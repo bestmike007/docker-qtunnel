@@ -1,4 +1,4 @@
-FROM golang:1.8.1-alpine
+FROM golang:1.8.3-alpine
 MAINTAINER Yuanhai He <i@bestmike007.com>
 RUN apk add --no-cache make git && \
     cd && git clone https://github.com/getqujing/qtunnel.git qtunnel && \
