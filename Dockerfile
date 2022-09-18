@@ -1,10 +1,11 @@
-FROM golang:1.13.1-alpine3.10
+FROM golang:1.19.1-alpine3.16
 MAINTAINER Yuanhai He <i@bestmike007.com>
-RUN apk add --no-cache make git && \
+ENV GO111MODULE=off
+RUN apk add --no-cache make git binutils && \
     cd && git clone https://github.com/getqujing/qtunnel.git qtunnel && \
-    cd qtunnel && make
+    cd qtunnel && make && strip bin/qtunnel
 
-FROM alpine:3.10
+FROM alpine:3.16
 MAINTAINER Yuanhai He <i@bestmike007.com>
 COPY --from=0 /root/qtunnel/bin/qtunnel /usr/local/bin/qtunnel
 
